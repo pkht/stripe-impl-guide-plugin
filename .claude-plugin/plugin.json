@@ -1,0 +1,7 @@
+{
+  "name": "stripe-impl-guide",
+  "description": "Generates and maintains Stripe implementation guides for client engagements, covering Connect, Terminal, Billing, and related products. Optionally enriches guides with live data from the Stripe MCP server.",
+  "author": {
+    "name": "Phil Thomas"
+  }
+}
