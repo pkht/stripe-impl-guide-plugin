@@ -1,0 +1,14 @@
+{
+  "name": "stripe-impl-guide",
+  "owner": {
+    "name": "Phil Thomas"
+  },
+  "plugins": [
+    {
+      "name": "stripe-impl-guide",
+      "source": "./",
+      "description": "Generates and maintains Stripe implementation guides for client engagements. Supports Payments, Connect, Terminal, Billing, Radar, and Reporting.",
+      "version": "1.0.0"
+    }
+  ]
+}
