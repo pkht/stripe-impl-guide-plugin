@@ -1,8 +1,8 @@
 ---
 name: stripe-impl-guide
 description: Generate or update a Stripe implementation guide for a client engagement. Use when the user invokes /stripe-impl-guide with a client name or brief.
-argument-hint: "<client brief — name, use case, Stripe products>"
-allowed-tools: [Read, Write, Edit, Glob, Grep, mcp__stripe__get_stripe_account_info, mcp__stripe__fetch_stripe_resources, mcp__stripe__search_stripe_documentation, mcp__stripe__list_products, mcp__stripe__list_prices, mcp__stripe__retrieve_balance, mcp__stripe__list_customers, mcp__stripe__list_subscriptions]
+argument-hint: "<client name, use case, Stripe products, tech stack>"
+allowed-tools: [Read, Write, Edit, Glob, Grep]
 ---
 
 # Stripe Implementation Guide Skill
