@@ -7,11 +7,20 @@ A Claude Code plugin that generates and maintains Stripe implementation guides f
 Provides a `/stripe-impl-guide` slash command that:
 
 1. Reads a client brief (name, use case, Stripe products)
-2. Searches the current project for an existing implementation guide
+2. Confirms scope before generating
 3. Optionally enriches the guide with live data from the Stripe MCP server (account IDs, products, prices)
 4. Generates a structured markdown guide — or updates an existing one
 
 Supports: **Payments** (Checkout Sessions, Payment Intents + Elements), **Connect** (Platform, Buy-rate/Blended, Embedded Components), **Terminal** (POS, Tap-to-Pay, Offline), **Billing** (Subscriptions, Invoicing, Usage-based), **Radar** (Fraud rules, 3DS, Early Fraud Warnings), **Reporting** (Financial Reports, Reporting API, Embedded Components), **Webhooks**
+
+## Installation
+
+Run these two commands in any Claude Code project:
+
+```
+/plugin marketplace add pkht/stripe-impl-guide-plugin
+/plugin install stripe-impl-guide@stripe-impl-guide
+```
 
 ## Usage
 
@@ -30,18 +39,15 @@ Examples:
 ```
 
 The skill will:
-- Confirm scope with you before generating
-- Detect which Stripe products are needed from the brief
-- Create `<ClientName> - Stripe Implementation Guide.md` in the project if it doesn't exist
+- Confirm the detected scope with you before generating
+- Create `<ClientName> - Stripe Implementation Guide.md` in the project if none exists
 - Update an existing guide if one is found
 
-## Dependencies
+## Optional: Stripe MCP server
 
-### Optional: Stripe MCP server
+If the Stripe MCP server is configured in your project, the skill will pull live account data (account IDs, products, prices, balance) directly into the guide.
 
-If the [Stripe MCP server](https://github.com/stripe/agent-toolkit) is configured in your project, the skill will use it to pull live account data (account IDs, products, prices, balance) into the guide automatically.
-
-To configure the Stripe MCP server, add to `.mcp.json` in your project:
+Add to `.mcp.json` in your project:
 
 ```json
 {
@@ -55,35 +61,21 @@ To configure the Stripe MCP server, add to `.mcp.json` in your project:
 }
 ```
 
-Without the MCP server the skill works fine — it uses placeholder values that you fill in manually.
-
-## Installation
-
-### As a local plugin (development)
-
-```bash
-# From your Claude project root
-claude plugin install /path/to/stripe-impl-guide-plugin
-```
-
-### From GitHub (once published)
-
-```bash
-claude plugin install github:<your-org>/stripe-impl-guide
-```
+Without it, the skill uses clearly marked placeholders that you fill in manually.
 
 ## File structure
 
 ```
 stripe-impl-guide-plugin/
 ├── .claude-plugin/
-│   └── plugin.json
+│   ├── plugin.json
+│   └── marketplace.json
 ├── README.md
 └── skills/
     └── stripe-impl-guide/
-        ├── SKILL.md                          # Slash command definition
+        ├── SKILL.md                      # Slash command definition
         └── references/
-            ├── guide-structure.md            # Standard document blueprint
-            ├── product-detection.md          # Identifying Stripe products from a brief
-            └── product-templates.md          # Sub-section templates per product
+            ├── guide-structure.md        # Standard document blueprint
+            ├── product-detection.md      # Identifying Stripe products from a brief
+            └── product-templates.md      # Sub-section templates per product
 ```
